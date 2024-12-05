@@ -1,4 +1,0 @@
-[cache]
-    type = copy
-[core]
-    autostage = true
