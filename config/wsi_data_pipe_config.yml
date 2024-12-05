@@ -26,7 +26,7 @@ patching:
   downscaling_factor: 4.0
   invalid_ratio_thresh: 0.3
   exctraction_list: null
-  save_patch_images: true
+  save_patch_images: false
   save_tile_preview: false
 
 generation:
