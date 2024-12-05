@@ -1,0 +1,19 @@
+opencv-python==4.10.0.84
+openslide-bin
+numpy==1.26.4
+matplotlib
+pandas==2.2.3
+# transformers==4.37.2
+# einops==0.4
+# slideio==2.5.0
+# sacremoses==0.1.1
+# openai==1.14.0
+# einops-exts
+torch==2.1.0
+# transformers==4.37.2
+openslide-python==1.4.1
+flamingo-pytorch==0.1.2
+h5py==3.12.1
+torchvision==0.16.0
+Pillow
+dvc==3.58.0

@@ -1,8 +1,7 @@
 patching:
-  slide_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/slide_folder'
-  save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/save'
+  slide_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/raw'
+  save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/interim/patches_and_embeds/'
   model_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/ctranspath/ctranspath.pth'
-  model_name: 'ctranspath'
   file_extension: ".ndpi"
   patch_size: 256
   batch_size: 16
@@ -32,9 +31,14 @@ patching:
 
 generation:
     model_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/histogpt/histogpt-1b-6k-pruned.pth'
-    save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/save/output'
+    save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/interim/wsi_texts/'
     tokenizer_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/biogpt'
+    patching_model_name: 'ctranspath'
     length: 256
     top_k: 40
     top_p: 0.95
     temp: 0.7
+
+aggregation:
+    texts_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/interim/wsi_texts/'
+    save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/processed'

@@ -1,0 +1,6 @@
+save
+__pycache__
+/embeddings
+model_checkpoint/*
+data/*
+notebooks/*
