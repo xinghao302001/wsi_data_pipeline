@@ -1,0 +1,40 @@
+patching:
+  slide_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/slide_folder'
+  save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/save'
+  model_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/ctranspath/ctranspath.pth'
+  model_name: 'ctranspath'
+  file_extension: ".ndpi"
+  patch_size: 256
+  batch_size: 16
+  preview_size: 4096
+  edge_threshold: 2
+  white_thresh:
+    - 170
+    - 185
+    - 175
+  black_thresh:
+    - 0
+    - 0
+    - 0
+  calc_thresh:
+    - 40
+    - 40
+    - 40
+  split:
+    - 0
+    - 1
+  resolution_in_mpp: 0.0
+  downscaling_factor: 4.0
+  invalid_ratio_thresh: 0.3
+  exctraction_list: null
+  save_patch_images: true
+  save_tile_preview: false
+
+generation:
+    model_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/histogpt/histogpt-1b-6k-pruned.pth'
+    save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/save/output'
+    tokenizer_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/biogpt'
+    length: 256
+    top_k: 40
+    top_p: 0.95
+    temp: 0.7
