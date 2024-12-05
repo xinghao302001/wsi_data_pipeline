@@ -19,9 +19,9 @@ stages:
     outs:
     - path: data/interim/patches_and_embeds
       hash: md5
-      md5: fc00144391332901f093b07641f97158.dir
-      size: 1949646
-      nfiles: 4
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
   generate_wsi_text_with_patches_and_prompt_embeds:
     cmd: python src/data/generate_wsi_texts.py --config config/wsi_data_pipe_config.yml
     deps:
@@ -31,9 +31,9 @@ stages:
       size: 1198
     - path: data/interim/patches_and_embeds
       hash: md5
-      md5: fc00144391332901f093b07641f97158.dir
-      size: 1949646
-      nfiles: 4
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
     - path: src/data/generate_wsi_texts.py
       hash: md5
       md5: ddf1470c28743737a573d3a82389bfea
@@ -63,6 +63,6 @@ stages:
     outs:
     - path: data/processed/
       hash: md5
-      md5: 1b6ba3e5102ea7f5d374ac3f5b42c0f5.dir
-      size: 1785
-      nfiles: 1
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
