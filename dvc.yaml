@@ -25,7 +25,7 @@ stages:
     deps:
       - src/data/aggregate_all_wsi_texts.py
       - config/wsi_data_pipe_config.yml
-      - data/interim/wsi_texts
+      - data/processed/wsi_texts
     # outs:
     #   - data/processed/:
     #       persist: true
