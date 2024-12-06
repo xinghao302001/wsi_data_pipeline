@@ -6,8 +6,9 @@ import csv
 
 
 def aggregate_all_generated_wsi_texts(configs: dict):
-    save_path = configs["save_path"]
-    texts_path = configs["texts_path"]
+    aggregation_configs = configs["aggregation"]
+    save_path = aggregation_configs["save_path"]
+    texts_path = aggregation_configs["texts_path"]
 
     csv_file_path = os.path.join(save_path, "result.csv")
     final_res = []
@@ -29,4 +30,4 @@ if __name__ == "__main__":
     args = args_parser.parse_args()
     with open(args.config, "r") as file:
         config_dict = yaml.safe_load(file)
-    aggregate_all_generated_wsi_texts(config_dict["aggregation"])
+    aggregate_all_generated_wsi_texts(config_dict)

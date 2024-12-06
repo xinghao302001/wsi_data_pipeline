@@ -31,7 +31,7 @@ patching:
 
 generation:
     model_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/histogpt/histogpt-1b-6k-pruned.pth'
-    save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/interim/wsi_texts/'
+    save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/processed/wsi_texts/'
     tokenizer_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/biogpt'
     patching_model_name: 'ctranspath'
     length: 256
@@ -40,5 +40,5 @@ generation:
     temp: 0.7
 
 aggregation:
-    texts_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/interim/wsi_texts/'
+    texts_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/processed/wsi_texts/'
     save_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/data/processed'
