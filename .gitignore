@@ -5,4 +5,4 @@ model_checkpoint/*
 data/interim/patches_and_embeds
 # data/processed
 notebooks/*
-tmp/*
+tmp/dvc/*
