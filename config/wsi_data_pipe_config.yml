@@ -4,7 +4,7 @@ patching:
   model_path: '/hy-tmp/wuxinghao/wsi_data_pipeline/model_checkpoint/ctranspath/ctranspath.pth'
   file_extension: ".ndpi"
   patch_size: 256
-  batch_size: 16
+  batch_size: 24
   preview_size: 4096
   edge_threshold: 2
   white_thresh:
