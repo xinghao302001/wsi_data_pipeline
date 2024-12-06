@@ -2,7 +2,8 @@ save
 __pycache__
 /embeddings
 model_checkpoint/*
-data/interim/patches_and_embeds
+# data/interim/patches_and_embeds
 # data/processed
+data/*
 notebooks/*
 tmp/dvc/*
