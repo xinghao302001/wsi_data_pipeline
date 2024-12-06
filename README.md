@@ -1,49 +1,55 @@
 Directory Structure
 --------------------
-    ├── README.md
-    ├── models  <- compiled model .pkl or HDFS or .pb format
-    ├── config  <- any configuration files
-    ├── data
-    │   ├── external <- external data
-    │   ├── interim <- data in intermediate processing stage
-    │   ├── processed <- data after all preprocessing has been done
-    │   └── raw <- original unmodified data acting as source of truth and provenance
-    ├── docs  <- usage documentation or reference papers
-    ├── notebooks <- jupyter notebooks for exploratory analysis and explanation 
-    ├── docker <- docker image(s) for running project inside container(s)
-    └── src
-        ├── data <- data prepare and/or preprocess
-        ├── evaluate <- evaluating model stage code 
-        ├── pipelines <- scripts of pipelines
-        ├── report <- visualization (often used in notebooks)
-        ├── train <- train model stage code
-        ├── transforms <- transformations data code (e.g., augmentation) 
-        └── utils.py <- auxiliary functions and classes
+    ├── HistoGPT
+    ├── wsi_data_pipeline
+    ├   ├── README.md
+    ├   ├── .dvc  <- (optional) such files related to data version control
+    ├   ├── model_checkpoints  <- model checkpoints (`.pth` format) and related config files
+    ├   ├── config  <- any `.yml` configuration files related to MLOps
+    ├   ├── data
+    ├   │   ├── interim <- data in intermediate processing stage 
+    ├   │       ├── patches_and_embeds <- save generated patches and embeddings for WSIs
+    ├   │   ├── processed <- data after all preprocessing has been done
+    ├   │       ├── wsi_texts <- save generated clinical reports for WSIs
+    ├   │       ├── result.csv <- aggrated all generated clinical reports in a `.csv` file.
+    ├   │   └── raw <- original unmodified WSI images (`.svs` or `.ndpi` formats)
+    ├   ├── notebooks <- jupyter notebooks for demo experiments 
+    ├   └── src
+    ├       ├── data <- scripts of data preparing and/or preprocessing
+    ├       ├── evaluate <- scripts of evaluating model (#TODO)
+    ├       ├── pipelines <- scripts of pipelines (#TODO)
+    ├       ├── report <- scripts of visualization (often used in notebooks) (#TODO)
+    ├       ├── train <- scripts of training model (#TODO)
+    ├       └── utils.py <- auxiliary functions and classes (#TODO)
         
 
 # Preparation
-
-### 1. Clone this repository
-
+### 1. Create Conda `env`
 ```bash
-git clone https://github.com/mlrepa/dvc-2-iris-demo-project.git
+conda create -n wsi_data_pipeline python=3.10
+```
+### 2. Clone this repository
+```bash
+git clone https://github.com/marrlab/HistoGPT.git
+cp -f wsi_data_pipeline/histogpt_install_setup/setup.py ./HistoGPT/setup.py
+mv -f wsi_data_pipeline/histogpt_install_setup/requirements.txt /hy-tmp/wuxinghao/HistoGPT
+```
+### 3. Install related depencies for `env`
+```bash
+conda activate wsi_data_pipeline
+cd HistoGPT
+pip install .
+pip install -r requirements.txt
 ```
 
-cd dvc-2-iris-demo-project
-
-### 2. Get data
-
-Download iris.csv
-
-```bash
-wget -P data/raw/ -nc https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv
-```         
-
-It may not work for Windows. So, use the [this link](https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv) 
-to load data into `data/raw/` folder
+### 4. Download WSI images
+- Download different WSI image `zip` files, `unzip` them and get the WSI image in `.svs` format.
+    - [Link for an eample](https://portal.gdc.cancer.gov/cases/0691b8c5-6244-407c-8601-fa1bda01ff2a?bioId=23ae363b-d19a-4ca9-8219-ca22eae68071)
+- Change the `.svs` suffix into `.ndpi`.
+- Store them into the `wsi_data_pipeline/data/raw` folder.
 
 
-### 3. Initialize DVC init 
+### 5. Initialize DVC init 
 
 __1) Install DVC__ 
 `pip install dvc`
@@ -52,9 +58,11 @@ __1) Install DVC__
 
 __2) Initialize DVC init__
 ONLY if you build the project from scratch. For projects clonned from GitHub it's already initialized.
+!! Before you initialize DVC, you must use `git init` to initialize the folder in `github` that you want to use for DVC.
 
 Initialize DVC 
 ```bash
+cd wsi_data_pipeline
 dvc init
 ```
 
@@ -64,71 +72,44 @@ Commit dvc init
 git commit -m "Initialize DVC"
 ``` 
 
-__3) Add remote storage for DVC (any local folder)__
+__3) Add remote storage for DVC (any cloud or local folder)__
+
+[Link for Cloud Storage set-up](https://dvc.org/doc/user-guide/data-management/remote-storage)
 ```bash
-dvc init
+# cd wsi_data_pipeline
 dvc config cache.type copy
-dvc remote add -d default_storage /tmp/dvc-storage
+dvc remote add -d my_storage /tmp/dvc-storage # local-storage
 ```
 
-### 4. Create .env file in `config/` folder 
-```bash
-GIT_CONFIG_USER_NAME=<git user>
-GIT_CONFIG_EMAIL=<git email>
-```
-   
-example
 
-```bash
-GIT_CONFIG_USER_NAME=mnrozhkov
-GIT_CONFIG_EMAIL=mnrozhkov@gmail.com
-```
-    
-### Setup docker tools and build docker image 
-Tutorial should work beyond docker container BUT not tested. 
+# How to Work
 
-__1) Install Docker and docker-compose tools__  
-Links may help:
+# Tutorial
+### All in Junyter Notebooks 
+- run all in Jupyter Notebooks in `wsi_data_pipeline/notebooks` folder.
 
-* [Link to Docker installation instructions](https://docs.docker.com/install/)
-* [Link to docker-compose instructions](https://docs.docker.com/compose/install/)
-
-__2) Build docker image__
-
-    ln -sf config/.env && docker-compose build
-  
-# Run     
-    
-Run docker container via docker-compose  
-
-    docker-compose up
-
-# Tutorial 
-    
-### Step 1: All in Junyter Notebooks 
-- run all in Jupyter Notebooks
-
-### Step 2: Move code to .py modules
-- i.e. main funcitons and classes 
-
-
-### Step 3: Add pipelines (stages) on Python modules
+### All related stages in `src` modules.
+You can customize different pipelines within different modules as your wish in `.py` format, and store them in `pipelines` folder.
 
 Pipeline (python) scripts location: `src/pipelines`
 
-Main stages:
+Main stages for `data` (WSI data pipeline):
+* __generate_wsi_patches_and_embed.py__
+    - Load config.yml and raw WSI images
+    - Generate embeddings for the patches of the WSIs using `CTranspath` model
+    - Store embeddings for text generation in `data/interim/h5_files` folder and patches (on demand) in `data/interim/patches` folder
+* __generate_wsi_texts.py__
+    - Generate clinical reports for each WSI image using `prompt` embeddings and `patches` embeddings
+    - Store each clinical in `data/processed/` folder within the name of `$wsi_name.txt`.
+* __aggregate_all_wsi_texts.py__
+    - Aggregate all generation texts and store it into `data/processed/result.csv` file within the column names `[WSI Name, Generated Text]`
 
-* __prepare_configs.py__: load config/pipeline_config.yml and split it into configs specific for next stages
 
-* __featurize.py__: create new features
 
-* __split_train_test.py__: split source dataset into train/test
 
-* __train.py__: train classifier 
 
-* __evaluate.py__: evaluate model and create metrics file
 
-    
+
 ### Step 4: Automate pipelines (DAG) execution  
 - add pipelines dependencies under DVC control
 - add models/data/congis under DVC control
