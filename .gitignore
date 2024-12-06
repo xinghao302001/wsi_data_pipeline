@@ -6,4 +6,5 @@ model_checkpoint/*
 # data/processed
 data/*
 notebooks/*
-tmp/dvc/*
+tmp_stroage/dvc/*
+logs/*
