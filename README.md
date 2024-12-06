@@ -3,24 +3,29 @@ Directory Structure
     ├── HistoGPT
     ├── wsi_data_pipeline
     ├   ├── README.md
-    ├   ├── .dvc  <- (optional) such files related to data version control
-    ├   ├── model_checkpoints  <- model checkpoints (`.pth` format) and related config files
-    ├   ├── config  <- any `.yml` configuration files related to MLOps
+    ├   ├── .dvc  <- (optional) such files related to data version control is using dvc
+    ├   ├── config  <- any .yml configuration files related to MLOps
+    ├   ├── notebooks <- jupyter notebooks for demo experiments
+    ├   ├── logs <- log files 
+    ├   ├── model_checkpoints  <- checkpoints (.pth format) and related config files
+    ├   │   ├── biogpt 
+    ├   │   ├── ctranspath
+    ├   │   ├── histogpt 
     ├   ├── data
     ├   │   ├── interim <- data in intermediate processing stage 
-    ├   │       ├── patches_and_embeds <- save generated patches and embeddings for WSIs
+    ├   │   ├   ├── patches_and_embeds <- save generated patches and embeddings for WSIs
     ├   │   ├── processed <- data after all preprocessing has been done
-    ├   │       ├── wsi_texts <- save generated clinical reports for WSIs
-    ├   │       ├── result.csv <- aggrated all generated clinical reports in a `.csv` file.
-    ├   │   └── raw <- original unmodified WSI images (`.svs` or `.ndpi` formats)
-    ├   ├── notebooks <- jupyter notebooks for demo experiments 
+    ├   │   ├   ├── wsi_texts <- save generated clinical reports for WSIs
+    ├   │   ├   ├── result.csv <- aggrated all generated clinical reports in a .csv file.
+    ├   │   └── raw <- original unmodified WSI images (.svs or .ndpi formats)
     ├   └── src
-    ├       ├── data <- scripts of data preparing and/or preprocessing
-    ├       ├── evaluate <- scripts of evaluating model (#TODO)
-    ├       ├── pipelines <- scripts of pipelines (#TODO)
-    ├       ├── report <- scripts of visualization (often used in notebooks) (#TODO)
-    ├       ├── train <- scripts of training model (#TODO)
-    ├       └── utils.py <- auxiliary functions and classes (#TODO)
+    ├   ├    ├── data <- scripts of data preparing and/or preprocessing
+    ├   ├    ├── logger <- scripts of logging configs
+    ├   ├    ├── evaluate <- scripts of evaluating model (#TODO)
+    ├   ├    ├── pipelines <- scripts of pipelines (#TODO)
+    ├   ├    ├── report <- scripts of visualization (often used in notebooks) (#TODO)
+    ├   ├    ├── train <- scripts of training model (#TODO)
+    ├   ├    └── utils.py <- auxiliary functions and classes (#TODO)
         
 
 # Preparation
