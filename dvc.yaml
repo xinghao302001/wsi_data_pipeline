@@ -5,9 +5,9 @@ stages:
       - src/data/generate_wsi_patches_and_embed.py
       - config/wsi_data_pipe_config.yml
       - data/raw
-    outs:
-      - data/interim/patches_and_embeds:
-          persist: true
+    # outs:
+    #   - data/interim/patches_and_embeds:
+    #       persist: true
     
 
   generate_wsi_text_with_patches_and_prompt_embeds:
@@ -16,9 +16,9 @@ stages:
       - src/data/generate_wsi_texts.py 
       - config/wsi_data_pipe_config.yml
       - data/interim/patches_and_embeds
-    outs:
-      - data/interim/wsi_texts/:
-          persist: true
+    # outs:
+    #   - data/interim/wsi_texts/:
+    #       persist: true
   
   aggregate_all_wsi_texts:
     cmd: python src/data/aggregate_all_wsi_texts.py --config config/wsi_data_pipe_config.yml
@@ -26,6 +26,6 @@ stages:
       - src/data/aggregate_all_wsi_texts.py
       - config/wsi_data_pipe_config.yml
       - data/interim/wsi_texts
-    outs:
-      - data/processed/:
-          persist: true
+    # outs:
+    #   - data/processed/:
+    #       persist: true
