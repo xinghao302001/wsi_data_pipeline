@@ -31,7 +31,7 @@ Directory Structure
 
 # Preparation
 ### 1. Create Conda `env`
-```bash
+```bashs
 conda create -n wsi_data_pipeline python=3.10
 ```
 ### 2. Clone this repository
