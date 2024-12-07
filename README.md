@@ -1,3 +1,4 @@
+# WSI Data Pipeline 
 Directory Structure
 --------------------
     ├── HistoGPT
@@ -108,7 +109,7 @@ python src/pipelines/wsi_data_pipe.py --config config/wsi_data_pipe_config.yml
 __3) The final generated clinic reports are `data/processed` folder, the on-demand generated patches are in the `data/interim/patches/` folder.__
 
 ## Run with `dvc`
-### 1. Defining the Stages (Pipeline)
+### 1. Defining the Stages (Pipeline) with `CLI`
 __1) Generate patches and embeddings__
 ```bash
 dvc stage add -n generate_wsi_patches_and_embed \
@@ -173,12 +174,12 @@ dvc push
 - run all in Jupyter Notebooks in `wsi_data_pipeline/notebooks` folder.
 
 ### 2. All related stages in `src` modules
-You can customize different pipelines within different modules as your wish in `.py` format, and store them in `pipelines` folder.
+- You can customize different pipelines within different modules as your wish in `.py` format, and store them in `pipelines` folder.
 
-Pipeline (python) scripts location: `src/pipelines`
+- Pipeline (python) scripts location: `src/pipelines`
 
 ### 3. All stages in `dvc.yaml` file
-You can directly write `dvc` stages in this `.yaml` file.
+- You can directly write `dvc` stages in this `.yaml` file without `CLI`.
 <!-- Main stages for `data` (WSI data pipeline):
 * __generate_wsi_patches_and_embed.py__
     - Load config.yml and raw WSI images
@@ -312,4 +313,4 @@ Reproduce stage: `dvc repro pipeline_evaluate.dvc` -->
 
 # References used for this tutorial
 
-1) [DVC tutorial](https://dvc.org/doc/tutorial) 
+- [DVC tutorial](https://dvc.org/doc/tutorial) 
