@@ -98,13 +98,14 @@ dvc push
 ```
 # How to Work
 ## Run without `dvc`
-### 1. Set-up configs in the `config/wsi_data_pipe_config.yml` file
-### 2. Run with the followng `cmd`:
+__1) Set-up configs in the `config/wsi_data_pipe_config.yml` file.__
+
+__2) Run with the followng `cmd`__:
 ```bash
 cd wsi_data_pipeline
 python src/pipelines/wsi_data_pipe.py --config config/wsi_data_pipe_config.yml
 ``` 
-### 3. The final generated clinic reports are `data/processed` folder, the on-demand generated patches are in the `data/interim/patches/` folder.
+__3) The final generated clinic reports are `data/processed` folder, the on-demand generated patches are in the `data/interim/patches/` folder.__
 
 ## Run with `dvc`
 ### 1. Defining the Stages (Pipeline)
@@ -168,14 +169,16 @@ __2) Push Data to Remote Storage__
 dvc push
 ```
 # Tutorial
-### All in Junyter Notebooks 
+### 1. All in Junyter Notebooks 
 - run all in Jupyter Notebooks in `wsi_data_pipeline/notebooks` folder.
 
-### All related stages in `src` modules.
+### 2. All related stages in `src` modules
 You can customize different pipelines within different modules as your wish in `.py` format, and store them in `pipelines` folder.
 
 Pipeline (python) scripts location: `src/pipelines`
 
+### 3. All stages in `dvc.yaml` file
+You can directly write `dvc` stages in this `.yaml` file.
 <!-- Main stages for `data` (WSI data pipeline):
 * __generate_wsi_patches_and_embed.py__
     - Load config.yml and raw WSI images
